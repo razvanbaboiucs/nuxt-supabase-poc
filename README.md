@@ -5,9 +5,13 @@ This is a template that has authentication using supabase built in and a minimal
 ## Pre-requisites
 
 Supabase account
+
 Supabase project created
+
 Email authentication provider enabled
+
 Confirmation email disabled
+
 .env file created with Supabase api keys and url
 
 ## Setup
