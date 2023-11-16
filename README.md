@@ -8,6 +8,7 @@ Supabase account
 Supabase project created
 Email authentication provider enabled
 Confirmation email disabled
+.env file created with Supabase api keys and url
 
 ## Setup
 
