@@ -61,6 +61,7 @@ async function onSubmit(event) {
         email: event.data.email,
         password: event.data.password
     })
+    console.log(error)
 }
 
 watch(user, () => {
