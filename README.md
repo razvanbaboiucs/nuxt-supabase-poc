@@ -1,6 +1,13 @@
-# Nuxt 3 Minimal Starter
+# Nuxt 3 + Supabase starter template project
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This is a template that has authentication using supabase built in and a minimal UI built using Nuxt UI.
+
+## Pre-requisites
+
+Supabase account
+Supabase project created
+Email authentication provider enabled
+Confirmation email disabled
 
 ## Setup
 
