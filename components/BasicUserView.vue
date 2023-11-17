@@ -11,16 +11,16 @@
 
           <template #footer>
             <div v-if="resource.status === 'accepted'">
-              <UButton label="Download" @click="() => downloadFile(resource.path)"/>
+              <UButton icon="i-heroicons-arrow-down-tray-20-solid" label="Download" @click="() => downloadFile(resource.path)"/>
             </div>
             <div v-else-if="resource.status === 'pending'">
               <UBadge label="Pending" color="cyan" variant="subtle" />
             </div>
             <div v-else-if="resource.status === 'denied'">
-              <UBadge label="Access denied" color="red" variant="subtle" />
+              <UBadge label="Access denied" size="md" color="red" variant="subtle" />
             </div>
             <div v-else>
-              <UButton label="Request access" @click="() => requestAccess(resource.id)" />
+              <UButton label="Request access" variant="soft" icon="i-heroicons-document-plus" @click="() => requestAccess(resource.id)" />
             </div>
           </template>
         </UCard>
