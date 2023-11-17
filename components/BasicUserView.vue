@@ -14,7 +14,7 @@
               <UButton icon="i-heroicons-arrow-down-tray-20-solid" label="Download" @click="() => downloadFile(resource.path)"/>
             </div>
             <div v-else-if="resource.status === 'pending'">
-              <UBadge label="Pending" color="cyan" variant="subtle" />
+              <UBadge label="Pending" size="md" color="cyan" variant="subtle" />
             </div>
             <div v-else-if="resource.status === 'denied'">
               <UBadge label="Access denied" size="md" color="red" variant="subtle" />
