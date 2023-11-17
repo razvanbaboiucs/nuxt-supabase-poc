@@ -1,5 +1,4 @@
 <template>
-  <UContainer>
     <p class="mb-5 text-2xl text-primary font-bold">Resources</p>
     <ul>
       <li v-for="resource in resourceDataRef">
@@ -27,7 +26,6 @@
         </UCard>
       </li>
     </ul>
-  </UContainer>
 </template>
 
 <script setup>
