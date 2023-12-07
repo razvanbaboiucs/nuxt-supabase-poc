@@ -3,8 +3,8 @@
     <p class="font-bold text-primary text-2xl mb-4">Access requests</p>
     <UTable :rows='rowsRef' :columns="columns">
       <template #status-data="{ row }">
-        <UBadge :color="row.status === 'accepted' ? 'green' : row.status === 'denied' ? 'red' : 'cyan'"
-          variant="subtle">{{ row.status }}</UBadge>
+        <UBadge :color="row.status === 'accepted' ? 'green' : row.status === 'denied' ? 'red' : 'cyan'" variant="subtle">
+          {{ row.status }}</UBadge>
       </template>
       <template #actions-data="{ row }">
         <UDropdown :items="actions(row)">
@@ -61,11 +61,20 @@ supabase.channel("access_requests_channel")
     });
   })
   .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'access_requests' }, payload => {
-    const newAccessRequest = payload.new
-    rowsRef.value.push(newAccessRequest)
+    onNewAccessRequestAdded(payload.new)
     toast.add({ title: 'Notification', description: 'A new access request has been added' })
   })
   .subscribe()
+
+async function onNewAccessRequestAdded(request) {
+  const { data: newAccessRequest } = await supabase.from('access_requests').select('id,resources(name),users(email),status').eq('id', request.id).limit(1)
+  rowsRef.value.push({
+    id: newAccessRequest[0].id,
+    userEmail: newAccessRequest[0].users.email,
+    resourceName: newAccessRequest[0].resources.name,
+    status: newAccessRequest[0].status
+  })
+}
 
 async function getAccessRequests() {
   const { data: accessRequests } = await supabase.from('access_requests').select('id,resources(name),users(email),status')
