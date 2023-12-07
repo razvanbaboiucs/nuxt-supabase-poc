@@ -3,7 +3,7 @@
     <p class="font-bold text-primary text-2xl mb-4">Access requests</p>
     <UTable :rows='rowsRef' :columns="columns">
       <template #status-data="{ row }">
-        <UBadge :color="[row.status === 'accepted' ? 'green' : row.status === 'denied' ? 'red' : 'cyan']"
+        <UBadge :color="row.status === 'accepted' ? 'green' : row.status === 'denied' ? 'red' : 'cyan'"
           variant="subtle">{{ row.status }}</UBadge>
       </template>
       <template #actions-data="{ row }">

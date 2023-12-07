@@ -42,6 +42,7 @@
 
 const supabase = useSupabaseClient()
 const user = useSupabaseUser()
+
 async function logout() {
     await supabase.auth.signOut()
 }
