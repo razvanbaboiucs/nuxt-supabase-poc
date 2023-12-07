@@ -1,5 +1,5 @@
 <template>
-    <UContainer class="flex min-h-full flex-1 flex-col h-screen justify-center px-6 max-w-md">
+    <UContainer class="flex min-h-full flex-1 flex-col h-screen justify-center px-6 max-w-md bg-slate-900">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
             <img class="mx-auto h-20 w-auto" src="/logo.svg" alt="Nuxt + Supabase" />
             <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-primary">Sign in to your account
