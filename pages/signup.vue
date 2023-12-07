@@ -39,6 +39,7 @@ definePageMeta({
 
 const supabase = useSupabaseClient()
 const user = useSupabaseUser()
+const toast = useToast()
 
 const state = reactive({
     email: undefined,
@@ -61,7 +62,9 @@ async function onSubmit(event) {
         email: event.data.email,
         password: event.data.password
     })
-    console.log(error)
+    if (error) {
+        toast.add({ title: 'Error', description: error, color: 'red' })
+    }
 }
 
 watch(user, () => {

@@ -1,31 +1,33 @@
 <template>
-    <p class="mb-5 text-2xl text-primary font-bold">Resources</p>
-    <ul>
-      <li v-for="resource in resourceDataRef">
-        <UCard class="mb-4 max-w-3xl">
-          <template #header>
-            <p class="text-lg text-primary font-semibold">{{ resource.name }}</p>
-          </template>
+  <p class="mb-5 text-2xl text-primary font-bold">Resources</p>
+  <ul>
+    <li v-for="resource in resourceDataRef">
+      <UCard class="mb-4 max-w-3xl">
+        <template #header>
+          <p class="text-lg text-primary font-semibold">{{ resource.name }}</p>
+        </template>
 
-          <p>{{ resource.description }}</p>
+        <p>{{ resource.description }}</p>
 
-          <template #footer>
-            <div v-if="resource.status === 'accepted'">
-              <UButton icon="i-heroicons-arrow-down-tray-20-solid" label="Download" @click="() => downloadFile(resource.path)"/>
-            </div>
-            <div v-else-if="resource.status === 'pending'">
-              <UBadge label="Pending" size="md" color="cyan" variant="subtle" />
-            </div>
-            <div v-else-if="resource.status === 'denied'">
-              <UBadge label="Access denied" size="md" color="red" variant="subtle" />
-            </div>
-            <div v-else>
-              <UButton label="Request access" variant="soft" icon="i-heroicons-document-plus" @click="() => requestAccess(resource.id)" />
-            </div>
-          </template>
-        </UCard>
-      </li>
-    </ul>
+        <template #footer>
+          <div v-if="resource.status === 'accepted'">
+            <UButton icon="i-heroicons-arrow-down-tray-20-solid" label="Download"
+              @click="() => downloadFile(resource.path)" />
+          </div>
+          <div v-else-if="resource.status === 'pending'">
+            <UBadge label="Pending" size="md" color="cyan" variant="subtle" />
+          </div>
+          <div v-else-if="resource.status === 'denied'">
+            <UBadge label="Access denied" size="md" color="red" variant="subtle" />
+          </div>
+          <div v-else>
+            <UButton label="Request access" variant="soft" icon="i-heroicons-document-plus"
+              @click="() => requestAccess(resource.id)" />
+          </div>
+        </template>
+      </UCard>
+    </li>
+  </ul>
 </template>
 
 <script setup>
@@ -43,7 +45,7 @@ supabase.channel("access_requests_channel")
     resourceDataRef.value = resourceDataRef.value.map(element => {
       if (element.id === newResource.resource_id) {
         element.status = newResource.status
-        toast.add({title: 'Access to resource has been changed'})
+        toast.add({ title: 'Notification', description: 'Access to resource has been changed' })
       }
       return element
     });
@@ -70,7 +72,7 @@ async function requestAccess(resourceId) {
     user_id: user.value.id,
   })
   if (error) {
-    console.error(error)
+    toast.add({ title: 'Error', description: error, color: 'red' })
   }
   else {
     resourceDataRef.value = resourceDataRef.value.map(element => {

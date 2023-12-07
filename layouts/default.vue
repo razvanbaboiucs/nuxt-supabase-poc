@@ -1,6 +1,6 @@
 <template>
-    <div class="min-h-full">
-        <nav class="px-6 py-2.5 bg-gray-800">
+    <div class="min-h-full dark:bg-slate-900">
+        <nav class="px-6 py-2.5 bg-slate-800">
             <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
                 <div class="flex items-center">
                     <img src="/logo.svg" class="mr-3 h-9" alt="logo" />
@@ -30,7 +30,7 @@
 
         <div class="py-10">
             <main>
-                <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                <div class="mx-auto max-w-7xl sm:px-6 lg:px-8 px-2">
                     <slot />
                 </div>
             </main>

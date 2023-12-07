@@ -2,8 +2,9 @@
   <div>
     <p class="font-bold text-primary text-2xl mb-4">Access requests</p>
     <UTable :rows='rowsRef' :columns="columns">
-      <template #status-data="{row}">
-        <UBadge :color="[row.status === 'accepted' ? 'green' : row.status === 'denied' ? 'red' : 'cyan']" variant="subtle">{{ row.status }}</UBadge>
+      <template #status-data="{ row }">
+        <UBadge :color="[row.status === 'accepted' ? 'green' : row.status === 'denied' ? 'red' : 'cyan']"
+          variant="subtle">{{ row.status }}</UBadge>
       </template>
       <template #actions-data="{ row }">
         <UDropdown :items="actions(row)">
@@ -62,7 +63,7 @@ supabase.channel("access_requests_channel")
   .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'access_requests' }, payload => {
     const newAccessRequest = payload.new
     rowsRef.value.push(newAccessRequest)
-    toast.add({title: 'A new access request has been added'})
+    toast.add({ title: 'Notification', description: 'A new access request has been added' })
   })
   .subscribe()
 
@@ -81,14 +82,14 @@ async function getAccessRequests() {
 async function acceptRequest(requestId) {
   const { error } = await supabase.from('access_requests').update({ status: 'accepted' }).eq('id', requestId)
   if (error) {
-    console.error(error)
+    toast.add({ title: 'Error', description: error, color: 'red' })
   }
 }
 
 async function denyRequest(requestId) {
   const { error } = await supabase.from('access_requests').update({ status: 'denied' }).eq('id', requestId)
   if (error) {
-    console.error(error)
+    toast.add({ title: 'Error', description: error, color: 'red' })
   }
 }
 

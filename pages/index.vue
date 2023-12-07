@@ -12,10 +12,11 @@
 
 <script setup>
 const supabase = useSupabaseClient()
+const user = useSupabaseUser()
 const { data: role } = await useAsyncData('role', getRole)
 
 async function getRole() {
-    const { data: roles, error } = await supabase.from('user_roles').select('role').limit(1)
+    const { data: roles, error } = await supabase.from('users').select('role').eq('id', user.value.id)
     if (error) {
         console.error(error)
         return null
