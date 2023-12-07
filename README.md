@@ -94,22 +94,43 @@ create table
 ```
 
 Go to **Table Editor** and select the *users* table. Add the following RLS policy from the "For full customization" option:
-- policy name: Enable read to all authenticated users
-- allowed operation: SELECT
-- target roles: authenticated
-- using expression: true
+1. Read policy
+    - policy name: Enable read to all authenticated users
+    - allowed operation: SELECT
+    - target roles: authenticated
+    - using expression: true
 
-Select the *resources* table. Add the following RLS policy from the "For full customization" option:
-- policy name: Enable read, insert to all authenticated users
-- allowed operation: SELECT, INSERT
-- target roles: authenticated
-- using expression: true
+Select the *resources* table. Add the following RLS policies from the "For full customization" option:
+1. Read policy
+    - policy name: Enable read to all authenticated users
+    - allowed operation: SELECT
+    - target roles: authenticated
+    - using expression: true
+2. Insert policy
+    - policy name: Enable insert to all authenticated users
+    - allowed operation: INSERT
+    - target roles: authenticated
+    - using expression: true
 
-Select the *access_requests* table. Add the following RLS policy from the "For full customization" option:
-- policy name: Enable read, insert, update to all authenticated users
-- allowed operation: SELECT, INSERT, UPDATE
-- target roles: authenticated
-- using expression: true
+
+Select the *access_requests* table. Add the following RLS policies from the "For full customization" option:
+1. Read policy
+    - policy name: Enable read to all authenticated users
+    - allowed operation: SELECT
+    - target roles: authenticated
+    - using expression: true
+2. Insert policy
+    - policy name: Enable insert to all authenticated users
+    - allowed operation: INSERT
+    - target roles: authenticated
+    - using expression: true
+3. Update policy
+    - policy name: Enable update to all authenticated users
+    - allowed operation: UPDATE
+    - target roles: authenticated
+    - using expression: true
+    - with check expression: true
+
 
 While still on the *access_requests* table, enable the **Realtime** feature for it.
 
@@ -145,16 +166,23 @@ Go to **Storage** and create a new bucket called: *resources*. In the newly crea
 Go to **Storage** > **Policies**. 
 
 Add a new policy for *storage.buckets* from the "For full customization" option:
-- policy name: Enable read to all authenticated users
-- allowed operation: SELECT
-- target roles: authenticated
-- using expression: true
+1. Read policy
+    - policy name: Enable read to all authenticated users
+    - allowed operation: SELECT
+    - target roles: authenticated
+    - using expression: true
 
-Add a new policy for *storage.objects* from the "For full customization" option:
-- policy name: Enable read, insert to all authenticated users
-- allowed operation: SELECT, INSERT
-- target roles: authenticated
-- using expression: true
+Add the following new policies for *storage.objects* from the "For full customization" option:
+1. Read policy
+    - policy name: Enable read to all authenticated users
+    - allowed operation: SELECT
+    - target roles: authenticated
+    - using expression: true
+2. Insert policy
+    - policy name: Enable insert to all authenticated users
+    - allowed operation: INSERT
+    - target roles: authenticated
+    - using expression: true
 
 ## Development Server
 
